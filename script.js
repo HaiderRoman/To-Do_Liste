@@ -1,3 +1,9 @@
+function load(){
+    let list = document.getElementById("todo-list")
+    for(let i = 0 ; i < list.Length; i++){
+        list.add(input);
+    }
+}
 document.getElementById("add").addEventListener("click", function() {
     const inputValue = document.getElementById("textfeld").value;
 
@@ -21,6 +27,8 @@ document.getElementById("add").addEventListener("click", function() {
         checkbox.style.height = "25px"; 
         checkbox.style.marginRight = "10px"; 
         checkbox.addEventListener("click", function() {
+            localStorage.setItem("myItem",inputValue);
+            const input = this.localStorage.getItem("myItem");
             if (checkbox.checked) {
                 li.classList.add("completed");
                 text.style.textDecoration = "line-through";
