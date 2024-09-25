@@ -4,19 +4,22 @@ document.getElementById("add").addEventListener("click", function() {
     if (inputValue !== "") {
         const li = document.createElement("li");
         li.style.listStyle = "none";
-        li.style.fontSize = "1.2em";
-        li.style.padding = "5px";
+        li.style.fontSize = "1em"; 
+        li.style.padding = "10px"; 
         li.style.backgroundColor = "white";
-        li.style.maxWidth = "250px";
+        li.style.width = `${document.getElementById("textfeld").offsetWidth}px`; // Set width to match input
         li.style.overflow = "hidden";
         li.style.textOverflow = "ellipsis";
-        li.style.marginBottom = "10px";
+        li.style.marginBottom = "20px"; 
+        li.style.display = "flex"; 
+        li.style.justifyContent = "space-between"; 
+        li.style.marginLeft = `${document.getElementById("textfeld").offsetLeft}px`; // Set margin-left to match input
 
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-        checkbox.style.width = "15px";
-        checkbox.style.height = "15px";
-        checkbox.style.marginRight = "10px";
+        checkbox.style.width = "25px"; 
+        checkbox.style.height = "25px"; 
+        checkbox.style.marginRight = "10px"; 
         checkbox.addEventListener("click", function() {
             if (checkbox.checked) {
                 li.classList.add("completed");
@@ -33,18 +36,18 @@ document.getElementById("add").addEventListener("click", function() {
 
         const text = document.createElement("span");
         text.textContent = inputValue;
-        text.style.fontSize = "1.1em";
+        text.style.fontSize = "1.3em"; 
         text.style.whiteSpace = "nowrap";
         text.style.overflow = "hidden";
         text.style.textOverflow = "ellipsis";
-        text.style.marginRight = "20px";
 
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Löschen";
+        deleteButton.style.fontSize = "20px"; 
         deleteButton.style.backgroundColor = "red";
         deleteButton.style.color = "white";
         deleteButton.style.border = "none";
-        deleteButton.style.padding = "5px 10px";
+        deleteButton.style.padding = "5px 15px"; 
         deleteButton.style.cursor = "pointer";
         deleteButton.addEventListener("click", function() {
             li.remove();
