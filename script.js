@@ -50,7 +50,9 @@ document.getElementById("add").addEventListener("click", function() {
         deleteButton.style.padding = "5px 15px"; 
         deleteButton.style.cursor = "pointer";
         deleteButton.addEventListener("click", function() {
-            li.remove();
+            if (confirm("Möchten Sie diese Aufgabe wirklich löschen?")) {
+                li.remove();
+            }
         });
 
         li.appendChild(checkbox);
