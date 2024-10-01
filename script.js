@@ -1,4 +1,5 @@
 let tasks = [];
+let taskId = 0;
 
 function createListItem(taskText, completed) {
     const li = document.createElement("li");
@@ -88,16 +89,33 @@ function loadTasks() {
     }
 }
 
+function addTask(taskText) {
+    try {
+        const existingTask = tasks.find(t => t.task === taskText);
+        if (existingTask) {
+            alert("Eine Aufgabe mit diesem Text existiert bereits.");
+            return false;
+        }
+        const newTaskId = taskId++;
+        tasks.push({ id: newTaskId, task: taskText, completed: false });
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        return true;
+    } catch (error) {
+        tasks.pop();
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        return false;
+    }
+}
+
 document.getElementById("add").addEventListener("click", function () {
     const inputValue = document.getElementById("textfeld").value;
 
     if (inputValue !== "") {
-        tasks.push({ task: inputValue, completed: false });
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-
-        const li = createListItem(inputValue, false);
-        document.getElementById("todo-list").appendChild(li);
-        document.getElementById("textfeld").value = "";
+        if (addTask(inputValue)) {
+            const li = createListItem(inputValue, false);
+            document.getElementById("todo-list").appendChild(li);
+            document.getElementById("textfeld").value = "";
+        }
     }
 });
 
